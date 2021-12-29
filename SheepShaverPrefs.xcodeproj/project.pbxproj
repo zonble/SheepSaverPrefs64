@@ -10,12 +10,12 @@
 		081178AE0B3A1946000C795B /* prefs_unix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 081178AD0B3A1946000C795B /* prefs_unix.cpp */; };
 		081179CB0B3A259A000C795B /* prefs_items.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 081179CA0B3A259A000C795B /* prefs_items.cpp */; };
 		0833FA2C0B39F9800068978D /* prefs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0833FA2B0B39F9800068978D /* prefs.cpp */; };
-		084186B10B3A0515004B1F63 /* PrefsEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 084186B00B3A0515004B1F63 /* PrefsEditor.m */; };
 		0C59EA16277C13CE00EF709F /* PrefsEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C59EA15277C13CE00EF709F /* PrefsEditor.swift */; };
-		0CF30807277C12020026BC03 /* PrefsEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF30805277C12020026BC03 /* PrefsEditor.m */; };
+		0C59EA18277C17D600EF709F /* PrefsEditor+NSTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C59EA17277C17D600EF709F /* PrefsEditor+NSTableViewDataSource.swift */; };
+		0C59EA1A277C18BE00EF709F /* PrefsEditor+NSWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C59EA19277C18BE00EF709F /* PrefsEditor+NSWindowDelegate.swift */; };
+		0C59EA1C277C243F00EF709F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C59EA1B277C243F00EF709F /* AppDelegate.swift */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
-		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,20 +28,17 @@
 		0833FA410B39FA090068978D /* config.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = SOURCE_ROOT; };
 		0833FA430B39FA1D0068978D /* sys.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = sys.h; sourceTree = SOURCE_ROOT; };
 		0833FA440B39FA280068978D /* prefs.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = prefs.h; sourceTree = SOURCE_ROOT; };
-		084186AF0B3A0515004B1F63 /* PrefsEditor.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PrefsEditor.h; sourceTree = "<group>"; };
-		084186B00B3A0515004B1F63 /* PrefsEditor.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PrefsEditor.m; sourceTree = "<group>"; };
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0C59EA14277C13CE00EF709F /* SheepShaverPrefs-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SheepShaverPrefs-Bridging-Header.h"; sourceTree = "<group>"; };
 		0C59EA15277C13CE00EF709F /* PrefsEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefsEditor.swift; sourceTree = "<group>"; };
-		0CF30805277C12020026BC03 /* PrefsEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefsEditor.m; sourceTree = "<group>"; };
-		0CF30806277C12020026BC03 /* PrefsEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefsEditor.h; sourceTree = "<group>"; };
+		0C59EA17277C17D600EF709F /* PrefsEditor+NSTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PrefsEditor+NSTableViewDataSource.swift"; sourceTree = "<group>"; };
+		0C59EA19277C18BE00EF709F /* PrefsEditor+NSWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PrefsEditor+NSWindowDelegate.swift"; sourceTree = "<group>"; };
+		0C59EA1B277C243F00EF709F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
-		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		32CA4F630368D1EE00C91783 /* SheepShaverPrefs_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SheepShaverPrefs_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* SheepShaverPrefs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SheepShaverPrefs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -61,10 +58,11 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				0CF30806277C12020026BC03 /* PrefsEditor.h */,
-				0CF30805277C12020026BC03 /* PrefsEditor.m */,
+				0C59EA1B277C243F00EF709F /* AppDelegate.swift */,
 				0C59EA15277C13CE00EF709F /* PrefsEditor.swift */,
 				0C59EA14277C13CE00EF709F /* SheepShaverPrefs-Bridging-Header.h */,
+				0C59EA17277C17D600EF709F /* PrefsEditor+NSTableViewDataSource.swift */,
+				0C59EA19277C18BE00EF709F /* PrefsEditor+NSWindowDelegate.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -107,23 +105,11 @@
 				081179CA0B3A259A000C795B /* prefs_items.cpp */,
 				0833FA2B0B39F9800068978D /* prefs.cpp */,
 				080E96DDFE201D6D7F000001 /* Classes */,
-				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				084186AF0B3A0515004B1F63 /* PrefsEditor.h */,
-				084186B00B3A0515004B1F63 /* PrefsEditor.m */,
 			);
 			name = SheepShaverPrefs;
-			sourceTree = "<group>";
-		};
-		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
-			isa = PBXGroup;
-			children = (
-				32CA4F630368D1EE00C91783 /* SheepShaverPrefs_Prefix.pch */,
-				29B97316FDCFA39411CA2CEA /* main.m */,
-			);
-			name = "Other Sources";
 			sourceTree = "<group>";
 		};
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
@@ -214,11 +200,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C59EA1C277C243F00EF709F /* AppDelegate.swift in Sources */,
+				0C59EA1A277C18BE00EF709F /* PrefsEditor+NSWindowDelegate.swift in Sources */,
+				0C59EA18277C17D600EF709F /* PrefsEditor+NSTableViewDataSource.swift in Sources */,
 				0C59EA16277C13CE00EF709F /* PrefsEditor.swift in Sources */,
-				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				0833FA2C0B39F9800068978D /* prefs.cpp in Sources */,
-				084186B10B3A0515004B1F63 /* PrefsEditor.m in Sources */,
-				0CF30807277C12020026BC03 /* PrefsEditor.m in Sources */,
 				081178AE0B3A1946000C795B /* prefs_unix.cpp in Sources */,
 				081179CB0B3A259A000C795B /* prefs_items.cpp in Sources */,
 			);
@@ -253,6 +239,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1.0.2;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_MODEL_TUNING = G5;
@@ -260,6 +247,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.SheepShaverPrefs;
 				PRODUCT_NAME = SheepShaverPrefs;
 				SWIFT_OBJC_BRIDGING_HEADER = "SheepShaverPrefs-Bridging-Header.h";
@@ -276,12 +264,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
+				CURRENT_PROJECT_VERSION = 1.0.2;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_MODEL_TUNING = G5;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.SheepShaverPrefs;
 				PRODUCT_NAME = SheepShaverPrefs;
 				SWIFT_OBJC_BRIDGING_HEADER = "SheepShaverPrefs-Bridging-Header.h";
@@ -321,8 +311,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.4u.sdk";
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -356,7 +347,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.4u.sdk";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
