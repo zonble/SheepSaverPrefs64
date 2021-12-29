@@ -2,7 +2,6 @@
  WIP Update to modern libraries on 64-bit Mac systems, both Intel and ARM.
  
  Alonzo Machiraju
- https://www.huskerbeach.com
 
 # Original readme
 
