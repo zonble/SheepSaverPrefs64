@@ -75,18 +75,23 @@ class PrefsEditor : NSObject {
 
         // Load preferences from settings file
         LoadPrefs()
-        Bundle.main.bundlePath.cString(using: .utf16)
+//        Bundle.main.bundlePath.cString(using: .utf16)
         chdir("..")
     }
     
     // MARK: - Setup
     
-    func awakeFromNib() {
-        var dsk : String?
+    override func awakeFromNib() {
         var index = 0
         
-        while (dsk = PrefsFindString("disk", index++)) != NULL {
-            diskArray.append(dsk)
+        while true {
+            var dsk = PrefsFindString("disk", Int32(index))
+            guard let dsk = dsk,
+                  let dskName = String(utf8String: dsk) else {
+                break
+            }
+            diskArray.append(dskName)
+            index += 1
         }
         
         disks.dataSource = self
@@ -98,7 +103,7 @@ class PrefsEditor : NSObject {
         switch (bootdriver) {
             case 0:
                 active = 0
-            case CDROMRefNum:
+            case Int32(CDROMRefNum):
                 active = 1
             default:
                 break
@@ -106,10 +111,10 @@ class PrefsEditor : NSObject {
         
         bootFrom.selectItem(at: active)
 
-        romFile.stringValue = getStringFromPrefs("rom")
-        unixRoot.stringValue = getStringFromPrefs("extfs")
+        romFile.stringValue = getStringFromPrefs("rom") ?? ""
+        unixRoot.stringValue = getStringFromPrefs("extfs") ?? ""
         
-        disableCdrom.intValue = PrefsFindBool("nocdrom")
+        disableCdrom.intValue = PrefsFindBool("nocdrom") ? 1: 0
         ramSize.intValue = PrefsFindInt32("ramsize") / (1024*1024)
         ramSizeStepper.intValue = PrefsFindInt32("ramsize") / (1024*1024)
 
@@ -127,8 +132,8 @@ class PrefsEditor : NSObject {
         }
 
         videoType.selectItem(at: display_type)
-        width.intValue = dis_width
-        height.intValue = dis_height
+        width.intValue = Int32(dis_width)
+        height.intValue = Int32(dis_height)
 
         let frameskip = PrefsFindInt32("frameskip")
         
@@ -157,15 +162,15 @@ class PrefsEditor : NSObject {
             refreshRate.selectItem(at: item)
         }
 
-        qdAccel.intValue = PrefsFindBool("gfxaccel")
-        disableSound.intValue = PrefsFindBool("nosound")
-        useRawKeyCodes.intValue = PrefsFindBool("keycodes")
-        
-        outDevice.stringValue = getStringFromPrefs("dsp")
-        mixDevice.stringValue = getStringFromPrefs("mixer")
-        rawKeyCodes.stringValue = getStringFromPrefs("keycodefile")
-        
-        rawKeyCodes.enabled = useRawKeyCodes.intValue
+        qdAccel.intValue = PrefsFindBool("gfxaccel") ? 1 : 0
+        disableSound.intValue = PrefsFindBool("nosound") ? 1 : 0
+        useRawKeyCodes.intValue = PrefsFindBool("keycodes") ? 1 : 0
+
+        outDevice.stringValue = getStringFromPrefs("dsp") ?? ""
+        mixDevice.stringValue = getStringFromPrefs("mixer") ?? ""
+        rawKeyCodes.stringValue = getStringFromPrefs("keycodefile") ?? ""
+
+        rawKeyCodes.isEnabled = (useRawKeyCodes.intValue != 0)
 
         let wheelmode = PrefsFindInt32("mousewheelmode")
         var wheel = 0
@@ -184,14 +189,14 @@ class PrefsEditor : NSObject {
         scrollLines.intValue = PrefsFindInt32("mousewheellines")
         scrollLinesStepper.intValue = PrefsFindInt32("mousewheellines")
 
-        ignoreIllegalMemoryAccesses.intValue = PrefsFindBool("ignoresegv")
-        dontUseCPUWhenIdle.intValue = PrefsFindBool("idlewait")
-        enableJIT.intValue = PrefsFindBool("jit")
-        enable68kDREmulator.intValue = PrefsFindBool("jit68k")
-      
-        modemPort.stringValue = getStringFromPrefs("seriala")
-        printerPort.stringValue = getStringFromPrefs("serialb")
-        ethernetInterface.stringValue = getStringFromPrefs("ether")
+        ignoreIllegalMemoryAccesses.intValue = PrefsFindBool("ignoresegv") ? 1: 0
+        dontUseCPUWhenIdle.intValue = PrefsFindBool("idlewait") ? 1: 0
+        enableJIT.intValue = PrefsFindBool("jit") ? 1: 0
+        enable68kDREmulator.intValue = PrefsFindBool("jit68k") ? 1: 0
+
+        modemPort.stringValue = getStringFromPrefs("seriala") ?? ""
+        printerPort.stringValue = getStringFromPrefs("serialb") ?? ""
+        ethernetInterface.stringValue = getStringFromPrefs("ether") ?? ""
     }
     
     // MARK: - Interface Methods
@@ -201,6 +206,8 @@ class PrefsEditor : NSObject {
         
         openPanel.canChooseDirectories = false
         openPanel.allowsMultipleSelection = false
+
+
         openPanel.beginSheet(forDirectory: "", file: "Unknown", modalFor: window, modalDelegate: self, didEndSelector: #selector(addDiskEnd(_): returnCode: contextInfo:)), contextInfo: nil)
     }
     
@@ -218,17 +225,17 @@ class PrefsEditor : NSObject {
         
     }
     @IBAction func useRawKeyCodesClicked(sender : AnyObject) {
-        rawKeyCodes.setEnabled(useRawKeyCodes.intValue)
+        rawKeyCodes.isEnabled = useRawKeyCodes.intValue != 0
     }
     
     // MARK: - Helper Methods
     
     func getStringFromPrefs(_ key: UnsafePointer<Int8>?) -> String? {
         let value = PrefsFindString(key)
-        if value == nil {
+        guard let value else {
             return ""
         }
-        return value
+        return String(cstring: value)
     }
     
     func addDiskEnd(_ openPanel: NSOpenPanel?, returnCode theReturnCode: Int, contextInfo theContextInfo: UnsafeMutableRawPointer?) {
@@ -254,7 +261,7 @@ class PrefsEditor : NSObject {
     }
 
     func createDiskEnd(_ savePanel: NSSavePanel?, returnCode theReturnCode: Int, contextInfo theContextInfo: UnsafeMutableRawPointer?) {
-        if theReturnCode == NSOKButton {
+        if theReturnCode == .OK {
             let size = diskSaveSizeField.intValue
             if size >= 0 && size <= 10000 {
                 let cmd = [Int8](repeating: 0, count: 1024)
@@ -267,7 +274,7 @@ class PrefsEditor : NSObject {
                     strlcpy(filename, save?.filename().cString(using: .ascii), MemoryLayout.size(ofValue: filename))
                     getcwd(cwd, MemoryLayout.size(ofValue: cwd))
                     cwdlen = strlen(cwd)
-                    if !strncmp(cwd, filename, cwdlen) {
+                    if (strncmp(cwd, filename, cwdlen) == 0) {
                         if cwdlen >= 0 && cwd[cwdlen - 1] != "/" {
                             cwdlen += 1
                         }

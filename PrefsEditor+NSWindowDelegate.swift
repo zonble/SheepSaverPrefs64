@@ -24,20 +24,21 @@
  */
 
 import Foundation
+import Cocoa
 
 extension PrefsEditor : NSWindowDelegate {
     func windowWillClose(_ notification: Notification) {
-        while PrefsFindString("disk") {
+        while (PrefsFindString("disk") != nil) {
             PrefsRemoveItem("disk")
         }
 
-        for i in 0..<diskArray.count() {
+        for i in 0..<diskArray.count {
             PrefsAddString("disk", diskArray[i].cString(using: .ascii))
         }
-        PrefsReplaceInt32("bootdriver", (bootFrom.indexOfSelectedItem == 1 ? Int(CDROMRefNum) : 0))
-        PrefsReplaceString("rom", "\(romFile)".cString(using: .ascii))
-        PrefsReplaceString("extfs", "\(unixRoot)".cString(using: .ascii))
-        PrefsReplaceBool("nocdrom", disableCdrom.intValue)
+        PrefsReplaceInt32("bootdriver", int32((bootFrom.indexOfSelectedItem == 1 ? Int(CDROMRefNum) : 0)))
+        PrefsReplaceString("rom", "\(String(describing: romFile))".cString(using: .ascii))
+        PrefsReplaceString("extfs", "\(String(describing: unixRoot))".cString(using: .ascii))
+        PrefsReplaceBool("nocdrom", (disableCdrom.intValue != 0))
         PrefsReplaceInt32("ramsize", ramSize.intValue << 20)
 
         let pref = [Int8](repeating: 0, count: 256)
@@ -61,27 +62,27 @@ extension PrefsEditor : NSWindowDelegate {
         default:
             break
         }
-        PrefsReplaceInt32("frameskip", rate)
-        PrefsReplaceBool("gfxaccel", qdAccel.intValue)
+        PrefsReplaceInt32("frameskip", int32(rate))
+        PrefsReplaceBool("gfxaccel", (qdAccel.intValue != 0))
 
-        PrefsReplaceBool("nosound", disableSound.intValue)
-        PrefsReplaceString("dsp", "\(outDevice)".cString(using: .ascii))
-        PrefsReplaceString("mixer", "\(mixDevice)".cString(using: .ascii))
+        PrefsReplaceBool("nosound", (disableSound.intValue != 0))
+        PrefsReplaceString("dsp", "\(String(describing: outDevice))".cString(using: .ascii))
+        PrefsReplaceString("mixer", "\(String(describing: mixDevice))".cString(using: .ascii))
 
-        PrefsReplaceBool("keycodes", useRawKeyCodes.intValue)
+        PrefsReplaceBool("keycodes", (useRawKeyCodes.intValue != 0))
         PrefsReplaceString("keycodefile", "\(rawKeyCodes)".cString(using: .ascii))
 
-        PrefsReplaceInt32("mousewheelmode", mouseWheel.indexOfSelectedItem)
+        PrefsReplaceInt32("mousewheelmode", int32(mouseWheel.indexOfSelectedItem))
         PrefsReplaceInt32("mousewheellines", scrollLines.intValue)
 
-        PrefsReplaceBool("ignoresegv", ignoreIllegalMemoryAccesses.intValue)
-        PrefsReplaceBool("idlewait", dontUseCPUWhenIdle.intValue)
-        PrefsReplaceBool("jit", enableJIT.intValue)
-        PrefsReplaceBool("jit68k", enable68kDREmulator.intValue)
+        PrefsReplaceBool("ignoresegv", (ignoreIllegalMemoryAccesses.intValue != 0))
+        PrefsReplaceBool("idlewait", (dontUseCPUWhenIdle.intValue != 0))
+        PrefsReplaceBool("jit", (enableJIT.intValue != 0))
+        PrefsReplaceBool("jit68k", (enable68kDREmulator.intValue != 0))
 
-        PrefsReplaceString("seriala", "\(modemPort)".cString(using: .ascii))
-        PrefsReplaceString("serialb", "\(printerPort)".cString(using: .ascii))
-        PrefsReplaceString("ether", "\(ethernetInterface)".cString(using: .ascii))
+        PrefsReplaceString("seriala", "\(String(describing: modemPort))".cString(using: .ascii))
+        PrefsReplaceString("serialb", "\(String(describing: printerPort))".cString(using: .ascii))
+        PrefsReplaceString("ether", "\(String(describing: ethernetInterface))".cString(using: .ascii))
 
         SavePrefs()
         PrefsExit()

@@ -28,10 +28,10 @@ import AppKit
 
 extension PrefsEditor : NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return diskArray.count
+        diskArray.count
     }
-    
-    func func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        return diskArray[row]
+
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        diskArray[row]
     }
 }
